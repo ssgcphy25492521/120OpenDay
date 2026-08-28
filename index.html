@@ -75,31 +75,29 @@
             width: 85px;
             height: 85px;
             border-radius: 12px;
-            /* FIXED: Visible white dashed border for the locked placeholders */
             border: 2px dashed rgba(255, 255, 255, 0.4); 
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 38px;
             position: relative;
-            /* FIXED: Light visible tint when empty */
             background-color: rgba(255, 255, 255, 0.1); 
             transition: all 0.3s ease;
         }
         .stamp .stamp-emoji {
             display: none;
         }
+        /* FIXED: Added clear separate display rules for unlocked states */
         .stamp.unlocked {
             border-style: solid;
             box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, #ffe875, var(--gold)) !important;
+            border-color: #d4af37 !important;
+            color: #5c4308 !important;
         }
+        /* FIXED: Explicitly commands the inner emoji tag block to show on unlock */
         .stamp.unlocked .stamp-emoji {
-            display: block;
-        }
-        .stamp.unlocked {
-            background: linear-gradient(135deg, #ffe875, var(--gold));
-            border-color: #d4af37;
-            color: #5c4308;
+            display: block !important;
         }
         .congratulations {
             background: #d4edda;
@@ -298,4 +296,3 @@
             const redeemBtn = document.getElementById('redeem-btn');
             if (unlockedCount === validCodes.length) {
                 document.getElementById('congrats-banner').style.display = 'block';
-                redeemBtn.disabled = false;
