@@ -84,18 +84,13 @@
             background-color: rgba(255, 255, 255, 0.1); 
             transition: all 0.3s ease;
         }
-        .stamp .stamp-emoji {
-            display: none;
-        }
+        /* Active Unlocked Stamp Look */
         .stamp.unlocked {
             border-style: solid;
             box-shadow: 0 4px 8px rgba(0,0,0,0.3);
             background: linear-gradient(135deg, #ffe875, var(--gold));
             border-color: #d4af37;
             color: #5c4308;
-        }
-        .stamp.unlocked .stamp-emoji {
-            display: block;
         }
         .congratulations {
             background: #d4edda;
@@ -113,6 +108,7 @@
             font-size: 16px;
             line-height: 1.5;
         }
+        /* Integrated Pop-up Layout (Blocks standard browser alert banners) */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -162,6 +158,7 @@
             background-color: #e2e8f0;
             color: #4a5568;
         }
+        /* Action Button Design Rules */
         .action-btn {
             margin-top: 25px;
             color: white;
@@ -210,48 +207,48 @@
         <div class="zone-card">
             <div class="zone-title">Zone 1</div>
             <div class="stamps-container">
-                <div class="stamp" id="Z1G"><span class="stamp-emoji">🏮</span></div>
-                <div class="stamp" id="Z1S"><span class="stamp-emoji">🏯</span></div>
+                <div class="stamp" id="Z1G"></div>
+                <div class="stamp" id="Z1S"></div>
             </div>
         </div>
         <!-- Zone 2 -->
         <div class="zone-card">
             <div class="zone-title">Zone 2</div>
             <div class="stamps-container">
-                <div class="stamp" id="Z2G"><span class="stamp-emoji">🎤</span></div>
-                <div class="stamp" id="Z2S"><span class="stamp-emoji">🤸‍♀️</span></div>
+                <div class="stamp" id="Z2G"></div>
+                <div class="stamp" id="Z2S"></div>
             </div>
         </div>
         <!-- Zone 3 -->
         <div class="zone-card">
             <div class="zone-title">Zone 3</div>
             <div class="stamps-container">
-                <div class="stamp" id="Z3G"><span class="stamp-emoji">🔬</span></div>
-                <div class="stamp" id="Z3S"><span class="stamp-emoji">💻</span></div>
+                <div class="stamp" id="Z3G"></div>
+                <div class="stamp" id="Z3S"></div>
             </div>
         </div>
         <!-- Zone 4 -->
         <div class="zone-card">
             <div class="zone-title">Zone 4</div>
             <div class="stamps-container">
-                <div class="stamp" id="Z4G"><span class="stamp-emoji">💼</span></div>
-                <div class="stamp" id="Z4S"><span class="stamp-emoji">📈</span></div>
+                <div class="stamp" id="Z4G"></div>
+                <div class="stamp" id="Z4S"></div>
             </div>
         </div>
         <!-- Zone 5 -->
         <div class="zone-card">
             <div class="zone-title">Zone 5</div>
             <div class="stamps-container">
-                <div class="stamp" id="Z5G"><span class="stamp-emoji">🧘‍♀️</span></div>
-                <div class="stamp" id="Z5S"><span class="stamp-emoji">💆🏻‍♀️</span></div>
+                <div class="stamp" id="Z5G"></div>
+                <div class="stamp" id="Z5S"></div>
             </div>
         </div>
         <!-- Zone 6 -->
         <div class="zone-card">
             <div class="zone-title">Zone 6</div>
             <div class="stamps-container">
-                <div class="stamp" id="Z6G"><span class="stamp-emoji">🏀</span></div>
-                <div class="stamp" id="Z6S"><span class="stamp-emoji">🏋🏻‍♀️</span></div>
+                <div class="stamp" id="Z6G"></div>
+                <div class="stamp" id="Z6S"></div>
             </div>
         </div>
     </div>
@@ -272,11 +269,17 @@
     </div>
 
     <script>
-        const validCodes = [
-            'Z1G', 'Z1S', 'Z2G', 'Z2S', 'Z3G', 'Z3S', 
-            'Z4G', 'Z4S', 'Z5G', 'Z5S', 'Z6G', 'Z6S'
-        ];
+        // Mapping system linking each ID with its exact design emoji object
+        const stampEmojis = {
+            'Z1G': '🏮', 'Z1S': '🏯',
+            'Z2G': '🎤', 'Z2S': '🤸‍♀️',
+            'Z3G': '🔬', 'Z3S': '💻',
+            'Z4G': '💼', 'Z4S': '📈',
+            'Z5G': '🧘‍♀️', 'Z5S': '💆🏻‍♀️',
+            'Z6G': '🏀', 'Z6S': '🏋🏻‍♀️'
+        };
 
+        const validCodes = Object.keys(stampEmojis);
         let progress = JSON.parse(localStorage.getItem('ssgc_stamps')) || {};
 
         function updateUI() {
@@ -285,9 +288,11 @@
                 const element = document.getElementById(code);
                 if (progress[code]) {
                     element.classList.add('unlocked');
+                    element.innerText = stampEmojis[code]; // Directly injects the text emoji content string
                     unlockedCount++;
                 } else {
                     element.classList.remove('unlocked');
+                    element.innerText = ''; // Clears the inner text area when locked empty
                 }
             });
 
@@ -297,5 +302,3 @@
                 redeemBtn.disabled = false;
             } else {
                 document.getElementById('congrats-banner').style.display = 'none';
-                redeemBtn.disabled = true;
-            }
