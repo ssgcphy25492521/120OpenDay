@@ -9,7 +9,6 @@
             --pale-blue: #e6f2ff;
             --gold: #ffd700;
             --dark-blue: #003366;
-            --active-blue: #0066cc;
         }
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -75,29 +74,29 @@
             width: 85px;
             height: 85px;
             border-radius: 12px;
-            border: 2px dashed rgba(255, 255, 255, 0.4); 
+            border: 2px dashed #88aacc;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 38px;
             position: relative;
-            background-color: rgba(255, 255, 255, 0.1); 
+            background-color: rgba(255, 255, 255, 0.05);
             transition: all 0.3s ease;
         }
         .stamp .stamp-emoji {
             display: none;
         }
-        /* FIXED: Added clear separate display rules for unlocked states */
         .stamp.unlocked {
             border-style: solid;
             box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-            background: linear-gradient(135deg, #ffe875, var(--gold)) !important;
-            border-color: #d4af37 !important;
-            color: #5c4308 !important;
         }
-        /* FIXED: Explicitly commands the inner emoji tag block to show on unlock */
         .stamp.unlocked .stamp-emoji {
-            display: block !important;
+            display: block;
+        }
+        .stamp.unlocked {
+            background: linear-gradient(135deg, #ffe875, var(--gold));
+            border-color: #d4af37;
+            color: #5c4308;
         }
         .congratulations {
             background: #d4edda;
@@ -115,78 +114,19 @@
             font-size: 16px;
             line-height: 1.5;
         }
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        .modal-content {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            text-align: center;
-            max-width: 400px;
-            width: 85%;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
-            color: #333;
-        }
-        .modal-text {
-            font-size: 16px;
-            font-weight: bold;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-        .modal-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-        .modal-btn {
-            padding: 10px 20px;
-            font-size: 14px;
-            font-weight: bold;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-        .modal-btn.confirm {
-            background-color: #dc3545;
-            color: white;
-        }
-        .modal-btn.cancel {
-            background-color: #e2e8f0;
-            color: #4a5568;
-        }
         .action-btn {
             margin-top: 25px;
+            background-color: #6c757d;
             color: white;
             border: none;
-            padding: 12px 35px;
-            font-size: 16px;
+            padding: 10px 24px;
+            font-size: 14px;
             border-radius: 6px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-        .action-btn:disabled {
-            background-color: #cbd5e1;
-            color: #94a3b8;
-            cursor: not-allowed;
-            box-shadow: none;
-        }
-        .action-btn:not(:disabled) {
-            background-color: var(--active-blue);
             cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            font-weight: bold;
         }
-        .action-btn:not(:disabled):hover {
-            background-color: #0052a3;
+        .action-btn:hover {
+            background-color: #5a6268;
         }
     </style>
 </head>
@@ -194,12 +134,9 @@
 
     <div class="header">
         <img class="school-badge" src="badge.png" alt="St. Stephen's Girls' College Badge" onerror="this.style.display='none'">
-        <h1>St. Stephen’s Girls’ College</h1>
-        <h1>120<sup>th</sup> Anniversary Open Day</h1>
-        <h1>聖士提反女子中學</h1>
-        <h1>一百二十周年校慶開放日</h1>
-        <p style="font-size: 16px; margin: 15px 0 5px 0; font-weight: bold; color: #003366;">Digital Reward Card</p>
-        <p style="font-size: 16px; margin: 5px 0 0 0; font-weight: bold; color: #003366;">電子印花收集卡</p>
+        <h1>St. Stephen’s Girls’ College 120<sup>th</sup> Anniversary Open Day</h1>
+        <h1>聖士提反女子中學一百二十周年校慶開放日</h1>
+        <p style="font-size: 16px; margin-top: 10px; font-weight: bold; color: #003366;">Digital Reward Card 電子印花收集卡</p>
     </div>
 
     <div id="congrats-banner" class="congratulations">
@@ -258,20 +195,7 @@
         </div>
     </div>
 
-    <button class="action-btn" id="redeem-btn" onclick="openRedeemModal()" disabled>Redeem 兌換</button>
-
-    <div class="modal-overlay" id="custom-modal">
-        <div class="modal-content">
-            <div class="modal-text">
-                Press to confirm redemption and reset the reward card.<br><br>
-                按此確認換領並重設獎勵卡。
-            </div>
-            <div class="modal-buttons">
-                <button class="modal-btn confirm" onclick="executeRedemption()">Confirm 確認</button>
-                <button class="modal-btn cancel" onclick="closeRedeemModal()">Cancel 取消</button>
-            </div>
-        </div>
-    </div>
+    <button class="action-btn" onclick="resetCard()">Reset 重設</button>
 
     <script>
         const validCodes = [
@@ -293,6 +217,36 @@
                 }
             });
 
-            const redeemBtn = document.getElementById('redeem-btn');
             if (unlockedCount === validCodes.length) {
                 document.getElementById('congrats-banner').style.display = 'block';
+            } else {
+                document.getElementById('congrats-banner').style.display = 'none';
+            }
+        }
+
+        function checkURLParameters() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const code = urlParams.get('code');
+
+            if (code && validCodes.includes(code.toUpperCase())) {
+                progress[code.toUpperCase()] = true;
+                localStorage.setItem('ssgc_stamps', JSON.stringify(progress));
+                
+                const cleanURL = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                window.history.replaceState({}, document.title, cleanURL);
+            }
+            updateUI();
+        }
+
+        function resetCard() {
+            if (confirm("Are you sure you want to reset your stamp card? 重設定確清除所有印章嗎？")) {
+                progress = {};
+                localStorage.removeItem('ssgc_stamps');
+                updateUI();
+            }
+        }
+
+        window.onload = checkURLParameters;
+    </script>
+</body>
+</html>
