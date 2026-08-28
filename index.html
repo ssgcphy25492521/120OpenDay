@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSGC 120th Anniversary Open Day Stamp Card</title>
+    <style>
+        :root {
+            --pale-blue: #e6f2ff;
+            --gold: #ffd700;
+            --silver: #c0c0c0;
+            --dark-blue: #003366;
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--pale-blue);
+            color: var(--dark-blue);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            max-width: 600px;
+        }
+        .school-badge {
+            width: 90px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+        h1 {
+            font-size: 20px;
+            margin: 5px 0;
+            line-height: 1.4;
+        }
+        sup {
+            font-size: 0.6em;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            width: 100%;
+            max-width: 500px;
+        }
+        .zone-card {
+            background: white;
+            border-radius: 12px;
+            padding: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid #d0e4ff;
+        }
+        .zone-title {
+            font-size: 12px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .stamps-container {
+            display: flex;
+            gap: 15px;
+        }
+        .stamp {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            border: 2px dashed #bbb;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            position: relative;
+            background-color: #fafafa;
+            transition: all 0.3s ease;
+        }
+        .stamp.unlocked {
+            border-style: solid;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+        }
+        .stamp.gold.unlocked {
+            background: linear-gradient(135deg, #ffe875, var(--gold));
+            border-color: #d4af37;
+            color: #5c4308;
+        }
+        .stamp.silver.unlocked {
+            background: linear-gradient(135deg, #ffffff, var(--silver));
+            border-color: #999;
+            color: #333;
+        }
+        .stamp-label {
+            font-size: 8px;
+            font-weight: bold;
+            margin-top: 2px;
+            opacity: 0.5;
+        }
+        .stamp.unlocked .stamp-label {
+            opacity: 0.8;
+        }
+        .congratulations {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+            max-width: 500px;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #c3e6cb;
+        }
+        .action-btn {
+            margin-top: 25px;
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            font-size: 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .action-btn:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <!-- Replace 'badge.png' with your actual hosted image path later -->
+        <img class="school-badge" src="badge.png" alt="St. Stephen's Girls' College Badge" onerror="this.style.display='none'">
+        <h1>St. Stephen’s Girls’ College 120<sup>th</sup> Anniversary Open Day</h1>
+        <h1>聖士提反女子中學一百二十周年校慶開放日</h1>
+        <p style="font-size: 14px; margin-px: 5px; color: #555;">Scan QR codes across 6 zones to collect all 12 stamps!</p>
+    </div>
+
+    <div id="congrats-banner" class="congratulations">
+        🎉 🎉 Congratulations! You have collected all 12 stamps! Please show this screen to the counter to redeem your souvenir. 🎉 🎉
+    </div>
+
+    <div class="grid-container">
+        <!-- Zone 1 -->
+        <div class="zone-card">
+            <div class="zone-title">Zone 1: Chinese Culture & Heritage</div>
+            <div class="stamps-container">
+                <div class="stamp gold" id="Z1G">🏮<span class="stamp-label">Z1G</span></div>
+                <div class="stamp silver" id="Z1S">🏮<span class="stamp-label">Z1S</span></div>
+            </div>
+        </div>
+        <!-- Zone 2 -->
+        <div class="zone-card">
+            <div class="zone-title">Zone 2: Performance (Dance/Sing)</div>
+            <div class="stamps-container">
+                <div class="stamp gold" id="Z2G">🎤<span class="stamp-label">Z2G</span></div>
+                <div class="stamp silver" id="Z2S">🎤<span class="stamp-label">Z2S</span></div>
+            </div>
+        </div>
+        <!-- Zone 3 -->
+        <div class="zone-card">
+            <div class="zone-title">Zone 3: STEAM & Technology</div>
+            <div class="stamps-container">
+                <div class="stamp gold" id="Z3G">🔬<span class="stamp-label">Z3G</span></div>
+                <div class="stamp silver" id="Z3S">🔬<span class="stamp-label">Z3S</span></div>
+            </div>
+        </div>
+        <!-- Zone 4 -->
+        <div class="zone-card">
+            <div class="zone-title">Zone 4: Business & Entrepreneurship</div>
+            <div class="stamps-container">
+                <div class="stamp gold" id="Z4G">💼<span class="stamp-label">Z4G</span></div>
+                <div class="stamp silver" id="Z4S">💼<span class="stamp-label">Z4S</span></div>
+            </div>
+        </div>
+        <!-- Zone 5 -->
+        <div class="zone-card">
+            <div class="zone-title">Zone 5: Well-being & Mindfulness</div>
+            <div class="stamps-container">
+                <div class="stamp gold" id="Z5G">🧘<span class="stamp-label">Z5G</span></div>
+                <div class="stamp silver" id="Z5S">🧘<span class="stamp-label">Z5S</span></div>
+            </div>
+        </div>
+        <!-- Zone 6 -->
+        <div class="zone-card">
+            <div class="zone-title">Zone 6: Sports & Playing</div>
+            <div class="stamps-container">
+                <div class="stamp gold" id="Z6G">🏀<span class="stamp-label">Z6G</span></div>
+                <div class="stamp silver" id="Z6S">🏀<span class="stamp-label">Z6S</span></div>
+            </div>
+        </div>
+    </div>
+
+    <button class="action-btn" onclick="resetCard()">Reset 重設</button>
+
+    <script>
+        const validCodes = [
+            'Z1G', 'Z1S', 'Z2G', 'Z2S', 'Z3G', 'Z3S', 
+            'Z4G', 'Z4S', 'Z5G', 'Z5S', 'Z6G', 'Z6S'
+        ];
+
+        // Load progress from browser storage
+        let progress = JSON.parse(localStorage.getItem('ssgc_stamps')) || {};
+
+        function updateUI() {
+            let unlockedCount = 0;
+            validCodes.forEach(code => {
+                const element = document.getElementById(code);
+                if (progress[code]) {
+                    element.classList.add('unlocked');
+                    unlockedCount++;
+                } else {
+                    element.classList.remove('unlocked');
+                }
+            });
+
+            if (unlockedCount === validCodes.length) {
+                document.getElementById('congrats-banner').style.display = 'block';
+            } else {
+                document.getElementById('congrats-banner').style.display = 'none';
+            }
+        }
+
+        // Check URL parameters for scanned stamp
+        function checkURLParameters() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const code = urlParams.get('code');
+
+            if (code && validCodes.includes(code.toUpperCase())) {
+                progress[code.toUpperCase()] = true;
+                localStorage.setItem('ssgc_stamps', JSON.stringify(progress));
+                
+                // Clean URL so refresh won't re-trigger behaviors
+                const cleanURL = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                window.history.replaceState({}, document.title, cleanURL);
+            }
+            updateUI();
+        }
+
+        function resetCard() {
+            if (confirm("Are you sure you want to reset your stamp card? 重設定確清除所有印章嗎？")) {
+                progress = {};
+                localStorage.removeItem('ssgc_stamps');
+                updateUI();
+            }
+        }
+
+        // Initialize on load
+        window.onload = checkURLParameters;
+    </script>
+</body>
+</html>
