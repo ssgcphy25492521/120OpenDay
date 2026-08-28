@@ -125,8 +125,6 @@
             cursor: pointer;
             font-weight: bold;
         }
-        
-        /* Updated button states */
         .action-btn:disabled {
             background-color: #cccccc;
             cursor: not-allowed;
@@ -137,6 +135,55 @@
         }
         .action-btn:not(:disabled):hover {
             background-color: #218838;
+        }
+
+        /* Custom Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-box {
+            background-color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 300px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .modal-text {
+            margin-bottom: 20px;
+            font-size: 16px;
+            line-height: 1.5;
+            color: var(--dark-blue);
+        }
+        .modal-buttons {
+            display: flex;
+            justify-content: space-around;
+            gap: 10px;
+        }
+        .btn-cancel {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .btn-confirm {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -204,10 +251,19 @@
             </div>
         </div>
     </div>
-    
-    <!-- Updated Button with ID and disabled attribute -->
-    <button id="redeem-btn" class="action-btn" onclick="resetCard()" disabled>Redeem 兌換</button>
-    
+    <button id="redeem-btn" class="action-btn" onclick="showModal()" disabled>Redeem 兌換</button>
+
+    <!-- Custom Modal HTML -->
+    <div id="confirm-modal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-text">Are you sure you want to reset your stamp card?<br><br>重設定確清除所有印章嗎？</div>
+            <div class="modal-buttons">
+                <button class="btn-cancel" onclick="closeModal()">Cancel 取消</button>
+                <button class="btn-confirm" onclick="confirmReset()">Confirm 確認</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         const validCodes = [
             'Z1G', 'Z1S', 'Z2G', 'Z2S', 'Z3G', 'Z3S', 
@@ -215,7 +271,6 @@
         ];
         let progress = JSON.parse(localStorage.getItem('ssgc_stamps')) || {};
         
-        // Updated UI Function
         function updateUI() {
             let unlockedCount = 0;
             validCodes.forEach(code => {
@@ -227,15 +282,13 @@
                     element.classList.remove('unlocked');
                 }
             });
-            
             const redeemBtn = document.getElementById('redeem-btn');
-            
             if (unlockedCount === validCodes.length) {
                 document.getElementById('congrats-banner').style.display = 'block';
-                redeemBtn.disabled = false; // Enables the button
+                redeemBtn.disabled = false;
             } else {
                 document.getElementById('congrats-banner').style.display = 'none';
-                redeemBtn.disabled = true;  // Keeps the button disabled
+                redeemBtn.disabled = true;
             }
         }
         
@@ -251,14 +304,23 @@
             }
             updateUI();
         }
-        
-        function resetCard() {
-            if (confirm("I confirm that I have redeemed the souvenir and agree to reset my reward card. 我確認我已兌換紀念品，並同意重設我的印花收集卡。")) {
-                progress = {};
-                localStorage.removeItem('ssgc_stamps');
-                updateUI();
-            }
+
+        /* Custom Modal Functions */
+        function showModal() {
+            document.getElementById('confirm-modal').style.display = 'flex';
         }
+
+        function closeModal() {
+            document.getElementById('confirm-modal').style.display = 'none';
+        }
+
+        function confirmReset() {
+            progress = {};
+            localStorage.removeItem('ssgc_stamps');
+            updateUI();
+            closeModal();
+        }
+        
         window.onload = checkURLParameters;
     </script>
 </body>
