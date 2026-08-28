@@ -83,9 +83,17 @@
             background-color: #fafafa;
             transition: all 0.3s ease;
         }
+        /* Hide emojis by default when locked */
+        .stamp .stamp-emoji {
+            display: none;
+        }
         .stamp.unlocked {
             border-style: solid;
             box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+        }
+        /* Show emojis only when unlocked */
+        .stamp.unlocked .stamp-emoji {
+            display: block;
         }
         .stamp.gold.unlocked {
             background: linear-gradient(135deg, #ffe875, var(--gold));
@@ -148,48 +156,48 @@
         <div class="zone-card">
             <div class="zone-title">Zone 1</div>
             <div class="stamps-container">
-                <div class="stamp gold" id="Z1G">🏮</div>
-                <div class="stamp silver" id="Z1S">🏮</div>
+                <div class="stamp gold" id="Z1G"><span class="stamp-emoji">🏮</span></div>
+                <div class="stamp silver" id="Z1S"><span class="stamp-emoji">🏮</span></div>
             </div>
         </div>
         <!-- Zone 2 -->
         <div class="zone-card">
             <div class="zone-title">Zone 2</div>
             <div class="stamps-container">
-                <div class="stamp gold" id="Z2G">🎤</div>
-                <div class="stamp silver" id="Z2S">🎤</div>
+                <div class="stamp gold" id="Z2G"><span class="stamp-emoji">🎤</span></div>
+                <div class="stamp silver" id="Z2S"><span class="stamp-emoji">🎤</span></div>
             </div>
         </div>
         <!-- Zone 3 -->
         <div class="zone-card">
             <div class="zone-title">Zone 3</div>
             <div class="stamps-container">
-                <div class="stamp gold" id="Z3G">🔬</div>
-                <div class="stamp silver" id="Z3S">🔬</div>
+                <div class="stamp gold" id="Z3G"><span class="stamp-emoji">🔬</span></div>
+                <div class="stamp silver" id="Z3S"><span class="stamp-emoji">🔬</span></div>
             </div>
         </div>
         <!-- Zone 4 -->
         <div class="zone-card">
             <div class="zone-title">Zone 4</div>
             <div class="stamps-container">
-                <div class="stamp gold" id="Z4G">💼</div>
-                <div class="stamp silver" id="Z4S">💼</div>
+                <div class="stamp gold" id="Z4G"><span class="stamp-emoji">💼</span></div>
+                <div class="stamp silver" id="Z4S"><span class="stamp-emoji">💼</span></div>
             </div>
         </div>
         <!-- Zone 5 -->
         <div class="zone-card">
             <div class="zone-title">Zone 5</div>
             <div class="stamps-container">
-                <div class="stamp gold" id="Z5G">🧘</div>
-                <div class="stamp silver" id="Z5S">🧘</div>
+                <div class="stamp gold" id="Z5G"><span class="stamp-emoji">🧘</span></div>
+                <div class="stamp silver" id="Z5S"><span class="stamp-emoji">🧘</span></div>
             </div>
         </div>
         <!-- Zone 6 -->
         <div class="zone-card">
             <div class="zone-title">Zone 6</div>
             <div class="stamps-container">
-                <div class="stamp gold" id="Z6G">🏀</div>
-                <div class="stamp silver" id="Z6S">🏀</div>
+                <div class="stamp gold" id="Z6G"><span class="stamp-emoji">🏀</span></div>
+                <div class="stamp silver" id="Z6S"><span class="stamp-emoji">🏀</span></div>
             </div>
         </div>
     </div>
