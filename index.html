@@ -1,3 +1,6 @@
+Yes, all the necessary CSS, HTML, and JavaScript changes are contained entirely within your `index.html` file.
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +12,6 @@
             --pale-blue: #e6f2ff;
             --gold: #ffd700;
             --dark-blue: #003366;
-            --active-blue: #0066cc;
         }
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -75,19 +77,26 @@
             width: 85px;
             height: 85px;
             border-radius: 12px;
-            border: 2px dashed rgba(255, 255, 255, 0.4); 
+            border: 2px dashed #88aacc;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 38px;
             position: relative;
-            background-color: rgba(255, 255, 255, 0.1); 
+            background-color: rgba(255, 255, 255, 0.05);
             transition: all 0.3s ease;
         }
-        /* Active Unlocked Stamp Look */
+        .stamp .stamp-emoji {
+            display: none;
+        }
         .stamp.unlocked {
             border-style: solid;
             box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        .stamp.unlocked .stamp-emoji {
+            display: block;
+        }
+        .stamp.unlocked {
             background: linear-gradient(135deg, #ffe875, var(--gold));
             border-color: #d4af37;
             color: #5c4308;
@@ -108,85 +117,33 @@
             font-size: 16px;
             line-height: 1.5;
         }
-        /* Integrated Pop-up Layout (Blocks standard browser alert banners) */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        .modal-content {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            text-align: center;
-            max-width: 400px;
-            width: 85%;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
-            color: #333;
-        }
-        .modal-text {
-            font-size: 16px;
-            font-weight: bold;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-        .modal-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-        .modal-btn {
-            padding: 10px 20px;
-            font-size: 14px;
-            font-weight: bold;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-        .modal-btn.confirm {
-            background-color: #dc3545;
-            color: white;
-        }
-        .modal-btn.cancel {
-            background-color: #e2e8f0;
-            color: #4a5568;
-        }
-        /* Action Button Design Rules */
         .action-btn {
             margin-top: 25px;
+            background-color: #6c757d;
             color: white;
             border: none;
-            padding: 12px 35px;
-            font-size: 16px;
+            padding: 10px 24px;
+            font-size: 14px;
             border-radius: 6px;
+            cursor: pointer;
             font-weight: bold;
-            transition: all 0.3s ease;
         }
+        
+        /* Updated button states */
         .action-btn:disabled {
-            background-color: #cbd5e1;
-            color: #94a3b8;
+            background-color: #cccccc;
             cursor: not-allowed;
-            box-shadow: none;
+            opacity: 0.7;
         }
         .action-btn:not(:disabled) {
-            background-color: var(--active-blue);
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            background-color: #28a745;
         }
         .action-btn:not(:disabled):hover {
-            background-color: #0052a3;
+            background-color: #218838;
         }
     </style>
 </head>
 <body>
-
     <div class="header">
         <img class="school-badge" src="badge.png" alt="St. Stephen's Girls' College Badge" onerror="this.style.display='none'">
         <h1>St. Stephen’s Girls’ College</h1>
@@ -196,109 +153,118 @@
         <p style="font-size: 16px; margin: 15px 0 5px 0; font-weight: bold; color: #003366;">Digital Reward Card</p>
         <p style="font-size: 16px; margin: 5px 0 0 0; font-weight: bold; color: #003366;">電子印花收集卡</p>
     </div>
-
     <div id="congrats-banner" class="congratulations">
         🎉 🎉 Congratulations! You have collected all 12 stamps!<br><br>
         恭喜您！您已集齊12個印花！ 🎉 🎉
     </div>
-
     <div class="grid-container">
         <!-- Zone 1 -->
         <div class="zone-card">
             <div class="zone-title">Zone 1</div>
             <div class="stamps-container">
-                <div class="stamp" id="Z1G"></div>
-                <div class="stamp" id="Z1S"></div>
+                <div class="stamp" id="Z1G"><span class="stamp-emoji">🏮</span></div>
+                <div class="stamp" id="Z1S"><span class="stamp-emoji">🏯</span></div>
             </div>
         </div>
         <!-- Zone 2 -->
         <div class="zone-card">
             <div class="zone-title">Zone 2</div>
             <div class="stamps-container">
-                <div class="stamp" id="Z2G"></div>
-                <div class="stamp" id="Z2S"></div>
+                <div class="stamp" id="Z2G"><span class="stamp-emoji">🎤</span></div>
+                <div class="stamp" id="Z2S"><span class="stamp-emoji">🤸‍♀️</span></div>
             </div>
         </div>
         <!-- Zone 3 -->
         <div class="zone-card">
             <div class="zone-title">Zone 3</div>
             <div class="stamps-container">
-                <div class="stamp" id="Z3G"></div>
-                <div class="stamp" id="Z3S"></div>
+                <div class="stamp" id="Z3G"><span class="stamp-emoji">🔬</span></div>
+                <div class="stamp" id="Z3S"><span class="stamp-emoji">💻</span></div>
             </div>
         </div>
         <!-- Zone 4 -->
         <div class="zone-card">
             <div class="zone-title">Zone 4</div>
             <div class="stamps-container">
-                <div class="stamp" id="Z4G"></div>
-                <div class="stamp" id="Z4S"></div>
+                <div class="stamp" id="Z4G"><span class="stamp-emoji">💼</span></div>
+                <div class="stamp" id="Z4S"><span class="stamp-emoji">📈</span></div>
             </div>
         </div>
         <!-- Zone 5 -->
         <div class="zone-card">
             <div class="zone-title">Zone 5</div>
             <div class="stamps-container">
-                <div class="stamp" id="Z5G"></div>
-                <div class="stamp" id="Z5S"></div>
+                <div class="stamp" id="Z5G"><span class="stamp-emoji">🧘‍♀️</span></div>
+                <div class="stamp" id="Z5S"><span class="stamp-emoji">💆🏻‍♀️</span></div>
             </div>
         </div>
         <!-- Zone 6 -->
         <div class="zone-card">
             <div class="zone-title">Zone 6</div>
             <div class="stamps-container">
-                <div class="stamp" id="Z6G"></div>
-                <div class="stamp" id="Z6S"></div>
+                <div class="stamp" id="Z6G"><span class="stamp-emoji">🏀</span></div>
+                <div class="stamp" id="Z6S"><span class="stamp-emoji">🏋🏻‍♀️</span></div>
             </div>
         </div>
     </div>
-
-    <button class="action-btn" id="redeem-btn" onclick="openRedeemModal()" disabled>Redeem 兌換</button>
-
-    <div class="modal-overlay" id="custom-modal">
-        <div class="modal-content">
-            <div class="modal-text">
-                Press to confirm redemption and reset the reward card.<br><br>
-                按此確認換領並重設獎勵卡。
-            </div>
-            <div class="modal-buttons">
-                <button class="modal-btn confirm" onclick="executeRedemption()">Confirm 確認</button>
-                <button class="modal-btn cancel" onclick="closeRedeemModal()">Cancel 取消</button>
-            </div>
-        </div>
-    </div>
-
+    
+    <!-- Updated Button with ID and disabled attribute -->
+    <button id="redeem-btn" class="action-btn" onclick="resetCard()" disabled>Redeem 兌換</button>
+    
     <script>
-        // Mapping system linking each ID with its exact design emoji object
-        const stampEmojis = {
-            'Z1G': '🏮', 'Z1S': '🏯',
-            'Z2G': '🎤', 'Z2S': '🤸‍♀️',
-            'Z3G': '🔬', 'Z3S': '💻',
-            'Z4G': '💼', 'Z4S': '📈',
-            'Z5G': '🧘‍♀️', 'Z5S': '💆🏻‍♀️',
-            'Z6G': '🏀', 'Z6S': '🏋🏻‍♀️'
-        };
-
-        const validCodes = Object.keys(stampEmojis);
+        const validCodes = [
+            'Z1G', 'Z1S', 'Z2G', 'Z2S', 'Z3G', 'Z3S', 
+            'Z4G', 'Z4S', 'Z5G', 'Z5S', 'Z6G', 'Z6S'
+        ];
         let progress = JSON.parse(localStorage.getItem('ssgc_stamps')) || {};
-
+        
+        // Updated UI Function
         function updateUI() {
             let unlockedCount = 0;
             validCodes.forEach(code => {
                 const element = document.getElementById(code);
                 if (progress[code]) {
                     element.classList.add('unlocked');
-                    element.innerText = stampEmojis[code]; // Directly injects the text emoji content string
                     unlockedCount++;
                 } else {
                     element.classList.remove('unlocked');
-                    element.innerText = ''; // Clears the inner text area when locked empty
                 }
             });
-
+            
             const redeemBtn = document.getElementById('redeem-btn');
+            
             if (unlockedCount === validCodes.length) {
                 document.getElementById('congrats-banner').style.display = 'block';
-                redeemBtn.disabled = false;
+                redeemBtn.disabled = false; // Enables the button
             } else {
                 document.getElementById('congrats-banner').style.display = 'none';
+                redeemBtn.disabled = true;  // Keeps the button disabled
+            }
+        }
+        
+        function checkURLParameters() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const code = urlParams.get('code');
+            if (code && validCodes.includes(code.toUpperCase())) {
+                progress[code.toUpperCase()] = true;
+                localStorage.setItem('ssgc_stamps', JSON.stringify(progress));
+                
+                const cleanURL = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                window.history.replaceState({}, document.title, cleanURL);
+            }
+            updateUI();
+        }
+        
+        function resetCard() {
+            if (confirm("Are you sure you want to reset your stamp card? 重設定確清除所有印章嗎？")) {
+                progress = {};
+                localStorage.removeItem('ssgc_stamps');
+                updateUI();
+            }
+        }
+        window.onload = checkURLParameters;
+    </script>
+</body>
+</html>
+
+```
