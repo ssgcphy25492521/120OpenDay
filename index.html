@@ -8,7 +8,6 @@
         :root {
             --pale-blue: #e6f2ff;
             --gold: #ffd700;
-            --silver: #c0c0c0;
             --dark-blue: #003366;
         }
         body {
@@ -94,15 +93,11 @@
         .stamp.unlocked .stamp-emoji {
             display: block;
         }
-        .stamp.gold.unlocked {
+        /* All stamps (both former gold & silver) now use this gold gradient background */
+        .stamp.unlocked {
             background: linear-gradient(135deg, #ffe875, var(--gold));
             border-color: #d4af37;
             color: #5c4308;
-        }
-        .stamp.silver.unlocked {
-            background: linear-gradient(135deg, #ffffff, var(--silver));
-            border-color: #999;
-            color: #333;
         }
         .congratulations {
             background: #d4edda;
@@ -155,48 +150,48 @@
         <div class="zone-card">
             <div class="zone-title">Zone 1</div>
             <div class="stamps-container">
-                <div class="stamp gold" id="Z1G"><span class="stamp-emoji">🏮</span></div>
-                <div class="stamp silver" id="Z1S"><span class="stamp-emoji">🏮</span></div>
+                <div class="stamp" id="Z1G"><span class="stamp-emoji">🏮</span></div>
+                <div class="stamp" id="Z1S"><span class="stamp-emoji">🏛️</span></div>
             </div>
         </div>
         <!-- Zone 2 -->
         <div class="zone-card">
             <div class="zone-title">Zone 2</div>
             <div class="stamps-container">
-                <div class="stamp gold" id="Z2G"><span class="stamp-emoji">🎤</span></div>
-                <div class="stamp silver" id="Z2S"><span class="stamp-emoji">🎤</span></div>
+                <div class="stamp" id="Z2G"><span class="stamp-emoji">🎤</span></div>
+                <div class="stamp" id="Z2S"><span class="stamp-emoji">💃</span></div>
             </div>
         </div>
         <!-- Zone 3 -->
         <div class="zone-card">
             <div class="zone-title">Zone 3</div>
             <div class="stamps-container">
-                <div class="stamp gold" id="Z3G"><span class="stamp-emoji">🔬</span></div>
-                <div class="stamp silver" id="Z3S"><span class="stamp-emoji">🔬</span></div>
+                <div class="stamp" id="Z3G"><span class="stamp-emoji">🔬</span></div>
+                <div class="stamp" id="Z3S"><span class="stamp-emoji">💻</span></div>
             </div>
         </div>
         <!-- Zone 4 -->
         <div class="zone-card">
             <div class="zone-title">Zone 4</div>
             <div class="stamps-container">
-                <div class="stamp gold" id="Z4G"><span class="stamp-emoji">💼</span></div>
-                <div class="stamp silver" id="Z4S"><span class="stamp-emoji">💼</span></div>
+                <div class="stamp" id="Z4G"><span class="stamp-emoji">💼</span></div>
+                <div class="stamp" id="Z4S"><span class="stamp-emoji">📈</span></div>
             </div>
         </div>
         <!-- Zone 5 -->
         <div class="zone-card">
             <div class="zone-title">Zone 5</div>
             <div class="stamps-container">
-                <div class="stamp gold" id="Z5G"><span class="stamp-emoji">🧘</span></div>
-                <div class="stamp silver" id="Z5S"><span class="stamp-emoji">🧘</span></div>
+                <div class="stamp" id="Z5G"><span class="stamp-emoji">🧘</span></div>
+                <div class="stamp" id="Z5S"><span class="stamp-emoji">🌿</span></div>
             </div>
         </div>
         <!-- Zone 6 -->
         <div class="zone-card">
             <div class="zone-title">Zone 6</div>
             <div class="stamps-container">
-                <div class="stamp gold" id="Z6G"><span class="stamp-emoji">🏀</span></div>
-                <div class="stamp silver" id="Z6S"><span class="stamp-emoji">🏀</span></div>
+                <div class="stamp" id="Z6G"><span class="stamp-emoji">🏀</span></div>
+                <div class="stamp" id="Z6S"><span class="stamp-emoji">🏃</span></div>
             </div>
         </div>
     </div>
