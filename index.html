@@ -1,4 +1,8 @@
-Yes, all the necessary CSS, HTML, and JavaScript changes are contained entirely within your `index.html` file.
+The **```** symbols are Markdown formatting markers used to create code blocks in this chat, and they are not part of the actual HTML. If they are showing up on your page, it means they were accidentally copied into your text editor.
+
+To fix this, simply delete the **```** at the very top and very bottom of your file in your code editor.
+
+Here is the fully clean code again. If your platform has a "Copy Code" button in the top right corner of the block below, use that to ensure you only copy the functional HTML:
 
 ```html
 <!DOCTYPE html>
@@ -128,8 +132,6 @@ Yes, all the necessary CSS, HTML, and JavaScript changes are contained entirely 
             cursor: pointer;
             font-weight: bold;
         }
-        
-        /* Updated button states */
         .action-btn:disabled {
             background-color: #cccccc;
             cursor: not-allowed;
@@ -207,18 +209,13 @@ Yes, all the necessary CSS, HTML, and JavaScript changes are contained entirely 
             </div>
         </div>
     </div>
-    
-    <!-- Updated Button with ID and disabled attribute -->
     <button id="redeem-btn" class="action-btn" onclick="resetCard()" disabled>Redeem 兌換</button>
-    
     <script>
         const validCodes = [
             'Z1G', 'Z1S', 'Z2G', 'Z2S', 'Z3G', 'Z3S', 
             'Z4G', 'Z4S', 'Z5G', 'Z5S', 'Z6G', 'Z6S'
         ];
         let progress = JSON.parse(localStorage.getItem('ssgc_stamps')) || {};
-        
-        // Updated UI Function
         function updateUI() {
             let unlockedCount = 0;
             validCodes.forEach(code => {
@@ -230,18 +227,15 @@ Yes, all the necessary CSS, HTML, and JavaScript changes are contained entirely 
                     element.classList.remove('unlocked');
                 }
             });
-            
             const redeemBtn = document.getElementById('redeem-btn');
-            
             if (unlockedCount === validCodes.length) {
                 document.getElementById('congrats-banner').style.display = 'block';
-                redeemBtn.disabled = false; // Enables the button
+                redeemBtn.disabled = false;
             } else {
                 document.getElementById('congrats-banner').style.display = 'none';
-                redeemBtn.disabled = true;  // Keeps the button disabled
+                redeemBtn.disabled = true;
             }
         }
-        
         function checkURLParameters() {
             const urlParams = new URLSearchParams(window.location.search);
             const code = urlParams.get('code');
@@ -254,7 +248,6 @@ Yes, all the necessary CSS, HTML, and JavaScript changes are contained entirely 
             }
             updateUI();
         }
-        
         function resetCard() {
             if (confirm("Are you sure you want to reset your stamp card? 重設定確清除所有印章嗎？")) {
                 progress = {};
