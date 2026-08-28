@@ -47,7 +47,7 @@
             max-width: 500px;
         }
         .zone-card {
-            background: var(--dark-blue); /* Changed from white to navy blue */
+            background: var(--dark-blue);
             border-radius: 12px;
             padding: 15px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.15);
@@ -65,26 +65,25 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #ffffff; /* Changed zone title text to white */
+            color: #ffffff;
         }
         .stamps-container {
             display: flex;
             gap: 15px;
         }
         .stamp {
-            width: 85px;  /* Increased from 55px to maximize stamp size */
-            height: 85px; /* Increased from 55px to maximize stamp size */
+            width: 85px;
+            height: 85px;
             border-radius: 12px;
             border: 2px dashed #88aacc;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 38px; /* Increased emoji size to fit the bigger stamp */
+            font-size: 38px;
             position: relative;
-            background-color: rgba(255, 255, 255, 0.05); /* Faint background when locked */
+            background-color: rgba(255, 255, 255, 0.05);
             transition: all 0.3s ease;
         }
-        /* Hide emojis by default when locked */
         .stamp .stamp-emoji {
             display: none;
         }
@@ -92,7 +91,6 @@
             border-style: solid;
             box-shadow: 0 4px 8px rgba(0,0,0,0.3);
         }
-        /* Show emojis only when unlocked */
         .stamp.unlocked .stamp-emoji {
             display: block;
         }
@@ -119,7 +117,7 @@
             width: 100%;
             box-sizing: border-box;
             border: 1px solid #c3e6cb;
-            font-size: 14px;
+            font-size: 16px;
             line-height: 1.5;
         }
         .action-btn {
@@ -148,8 +146,8 @@
     </div>
 
     <div id="congrats-banner" class="congratulations">
-        🎉 🎉 Congratulations! You have collected all 12 stamps! Please show this screen to the counter to redeem your souvenir.<br><br>
-        恭喜您！您已集齊12個印花！請向櫃檯工作人員出示此畫面以換領紀念品。 🎉 🎉
+        🎉 🎉 Congratulations! You have collected all 12 stamps!<br><br>
+        恭喜您！您已集齊12個印花！ 🎉 🎉
     </div>
 
     <div class="grid-container">
