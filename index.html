@@ -47,40 +47,41 @@
             max-width: 500px;
         }
         .zone-card {
-            background: white;
+            background: var(--dark-blue); /* Changed from white to navy blue */
             border-radius: 12px;
-            padding: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
             display: flex;
             flex-direction: column;
             align-items: center;
-            border: 1px solid #d0e4ff;
+            border: 1px solid #002244;
         }
         .zone-title {
-            font-size: 14px;
+            font-size: 16px;
             font-weight: bold;
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             height: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
+            color: #ffffff; /* Changed zone title text to white */
         }
         .stamps-container {
             display: flex;
             gap: 15px;
         }
         .stamp {
-            width: 55px;
-            height: 55px;
-            border-radius: 8px; /* Changed from 50% to 8px for rounded squares */
-            border: 2px dashed #bbb;
+            width: 85px;  /* Increased from 55px to maximize stamp size */
+            height: 85px; /* Increased from 55px to maximize stamp size */
+            border-radius: 12px;
+            border: 2px dashed #88aacc;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 38px; /* Increased emoji size to fit the bigger stamp */
             position: relative;
-            background-color: #fafafa;
+            background-color: rgba(255, 255, 255, 0.05); /* Faint background when locked */
             transition: all 0.3s ease;
         }
         /* Hide emojis by default when locked */
@@ -89,7 +90,7 @@
         }
         .stamp.unlocked {
             border-style: solid;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
         }
         /* Show emojis only when unlocked */
         .stamp.unlocked .stamp-emoji {
